@@ -61,4 +61,4 @@ npm run dev
 
 ## 👥 Equipe
 
-Desenvolvido por estudantes do Instituto Federal do Piauí (IFPI):
+Desenvolvido por estudantes do Instituto Federal de Educação, Ciência e Tecnologia do Piauí (IFPI):
