@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, User, Briefcase, GraduationCap, Building } from 'lucide-react';
+import { Menu, X, User, Briefcase, Building } from 'lucide-react';
 
 type NavbarProps = {
   onNavigate: (page: string) => void;
@@ -73,16 +73,6 @@ function Navbar({ onNavigate }: NavbarProps) {
           >
             <Briefcase className="h-5 w-5 mr-2" />
             Vagas
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('courses');
-              setIsMenuOpen(false);
-            }}
-            className="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-          >
-            <GraduationCap className="h-5 w-5 mr-2" />
-            Cursos
           </button>
           <button
             onClick={() => {
