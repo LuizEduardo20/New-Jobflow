@@ -21,11 +21,16 @@ JobFlow é uma plataforma de empregos desenvolvida por estudantes do Instituto F
 
 ## 🛠️ Tecnologias
 
+### Front-end
 - React
 - TypeScript
 - Tailwind CSS
 - Vite
-- Local Storage para persistência de dados
+
+### Back-end
+
+- Prisma e supabase para banco de dados
+- ExpressjS
 
 ## 📦 Instalação
 
