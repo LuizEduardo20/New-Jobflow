@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model cadastroCandidato {
+  idCandidato       Int           @id @default(autoincrement())
+  nomeCandidato     String
+  emailCandidato    String
+  telefoneCandidato String
+  curriculo         String        @default("")
+  senhaCandidato    String
+  enderecoId        Int           @unique
+  endereco          Endereco      @relation(fields: [enderecoId], references: [idEndereco])
+  candidaturas      candidatura[]
+}
+
+model cadastroEmpresa {
+  idEmpresa           Int             @id @default(autoincrement())
+  nomeEmpresa         String
+  cnpj                String
+  segmento            String
+  emailCorporativo    String
+  telefoneCorporativo String
+  enderecoId          Int             @unique
+  senhaEmpresa        String
+  vagas               cadastrarVaga[]
+  endereco            Endereco        @relation(fields: [enderecoId], references: [idEndereco])
+}
+
+model cadastrarVaga {
+  idVaga         Int             @id @default(autoincrement())
+  titulo         String
+  descricao      String
+  requisitos     String
+  salario        String
+  tipoContrato   String
+  modalidade     String
+  localizacao    String
+  dataPublicacao DateTime        @default(now())
+  status         String          @default("Aberta") @db.Text
+  skills         String[]
+  beneficios     String[]
+  empresaId      Int
+  empresa        cadastroEmpresa @relation(fields: [empresaId], references: [idEmpresa])
+  candidaturas   candidatura[]
+}
+
+model candidatura {
+  idCandidatura   Int               @id @default(autoincrement())
+  dataCandidatura DateTime          @default(now())
+  status          String            @default("Pendente")
+  candidatoId     Int
+  vagaId          Int
+  candidato       cadastroCandidato @relation(fields: [candidatoId], references: [idCandidato])
+  vaga            cadastrarVaga     @relation(fields: [vagaId], references: [idVaga])
+}
+
+model Endereco {
+  idEndereco  Int                @id @default(autoincrement())
+  cep         String
+  logradouro  String
+  numero      Int
+  complemento String?
+  bairro      String
+  cidade      String
+  estado      String
+  candidato   cadastroCandidato?
+  empresa     cadastroEmpresa?
+}
