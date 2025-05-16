@@ -14,7 +14,7 @@ function Navbar({ onNavigate }) {
               className="flex items-center space-x-2"
             >
               <Briefcase className="h-8 w-8" />
-              <span className="text-xl font-bold">JobFlow</span>
+              <span className="text-xl font-bold">New JobFlow</span>
             </button>
           </div>
 
